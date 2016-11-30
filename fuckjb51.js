@@ -18,7 +18,7 @@
     var getRe = GM_getValue('re', re);
     
     var reg = new RegExp(getRe,"g");
-
+     console.log(reg);
     //var resultQuery=document.getElementsByClassName('c-container');
        for(var i=1;i<11;i++)
        {
@@ -46,11 +46,17 @@
   document.getElementById("filter").addEventListener("click", filter );
     function filter(){
     var inputFilter=document.getElementById('inputFilter');
+        if(inputFilter.value!=='')
+        {   
          re=re+"|"+inputFilter.value+"\/.*?";
         getRe=re;
         GM_setValue('re',getRe);
          alert('已添加过滤地址');
         window.location.reload(true);
+        }
+        else{
+        alert("请输入需要过滤的域名");
+        }
     }
     // Your code here...
 })();
