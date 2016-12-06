@@ -9,30 +9,41 @@
 // @grant             GM_setValue
 // @grant             GM_getValue
 //@grant              GM_deleteValue
+// @grant		    GM_addStyle
 // ==/UserScript==
 
-(function() {
-    'use strict';
- 
+
+
+    if(window.location.search!=='')
+    {    
     var re="www.jb51.net\/.*?";
     var getRe = GM_getValue('re', re);
     
-    var reg = new RegExp(getRe,"g");
-     console.log(reg);
-    //var resultQuery=document.getElementsByClassName('c-container');
+    var reg = new RegExp(getRe);
+       var items=[];
+       var urls=[];
        for(var i=1;i<11;i++)
        {
-
-         var item=document.getElementById(i);
-         var url=item.getElementsByClassName('c-showurl')[0];  
-           url=url.innerHTML;
          
-           if(reg.test(url))
+           items.push(document.getElementById(i));
+           
+           urls.push(items[i-1].getElementsByClassName('c-showurl')[0].innerHTML);  
+         
+          console.log(i,reg.test(urls[i-1]));
+           console.log(i,urls[i-1]);
+           console.log(i,reg.test(urls[i-1]));
+           console.log(i,urls[i-1]);
+             console.log(i,reg.test(urls[i-1]));
+           console.log(i,urls[i-1]);
+           if(reg.test(urls[i-1]))
            {
-              console.log(url);
-              item.remove();
+              
+              items[i-1].remove();
+             
            }
+           
        }
+        console.log(items,urls);
     var s_tab=document.getElementById("s_tab");
     var inputFilter=document.createElement("input");
     inputFilter.setAttribute("id","inputFilter");
@@ -44,6 +55,7 @@
     s_tab.appendChild(inputFilter);
     s_tab.appendChild(filterButton);
   document.getElementById("filter").addEventListener("click", filter );
+          }
     function filter(){
     var inputFilter=document.getElementById('inputFilter');
         if(inputFilter.value!=='')
@@ -58,5 +70,5 @@
         alert("请输入需要过滤的域名");
         }
     }
-    // Your code here...
-})();
+    GM_addStyle("#inputFilter {width: 140px;height:25px;font-size:14px} #filter{width:40px;height:25px;color:red} ");
+  
