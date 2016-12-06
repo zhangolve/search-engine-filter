@@ -9,11 +9,11 @@
 // @grant             GM_setValue
 // @grant             GM_getValue
 //@grant              GM_deleteValue
-// @grant		    GM_addStyle
+// @grant			  GM_addStyle
 // ==/UserScript==
 
 
-
+     var searchUrl= 'https://www.baidu.com/s?ie=utf-8&f=8&wd=';
     if(window.location.search!=='')
     {    
     var re="www.jb51.net\/.*?";
@@ -26,15 +26,7 @@
        {
          
            items.push(document.getElementById(i));
-           
            urls.push(items[i-1].getElementsByClassName('c-showurl')[0].innerHTML);  
-         
-          console.log(i,reg.test(urls[i-1]));
-           console.log(i,urls[i-1]);
-           console.log(i,reg.test(urls[i-1]));
-           console.log(i,urls[i-1]);
-             console.log(i,reg.test(urls[i-1]));
-           console.log(i,urls[i-1]);
            if(reg.test(urls[i-1]))
            {
               
@@ -43,7 +35,9 @@
            }
            
        }
-        console.log(items,urls);
+        var button=document.getElementById('su');
+      button.addEventListener('click',timeout);
+      document.addEventListener("keypress",enter);
     var s_tab=document.getElementById("s_tab");
     var inputFilter=document.createElement("input");
     inputFilter.setAttribute("id","inputFilter");
@@ -70,5 +64,26 @@
         alert("请输入需要过滤的域名");
         }
     }
+       function timeout(){
+         
+           var kw=document.getElementById('kw').value;
+           searchUrl+=kw;
+           document.location.href=searchUrl; 　
+         
+      } 
+      function enter(event){
+      if(event.keyCode==13) {  
+            this.timeout();
+        }  
+      
+      }
+   
+
+
     GM_addStyle("#inputFilter {width: 140px;height:25px;font-size:14px} #filter{width:40px;height:25px;color:red} ");
+  /*
+
   
+  
+  
+  */
