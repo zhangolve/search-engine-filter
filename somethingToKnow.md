@@ -15,3 +15,12 @@
 
 
 
+# 遇到的问题
+
+![](http://7ktu2f.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20161207160257.png)
+
+审查元素发现有些div中没有 ```c-showurl``` 这个类的，但是又一个  ```g``` 类，因此需要对这个类进行处理。
+
+![](http://7ktu2f.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20161207212929.png)
+
+由于是对innerHTML进行正则判断，因此偶尔会出现这种问题，待解决。

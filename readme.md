@@ -11,13 +11,16 @@
 [原生js实现弹窗](http://www.cssscript.com/minimal-modal-window-with-plain-javascript/)
 
 - 更完善的过滤机制
-- 加入对google搜索时的过滤机制 (高优先级)
+
 - 当更新脚本时gm_Value 应当不变，而不是焚毁掉
 - 对输入的域名匹配正则表达式
-- 直接使用ES6语法，尽量不适用Jquery
+- 不止限于油猴脚本，开发出chrome 扩展形式
 
 # 已完成
 
 -　百度首页不执行该脚本
 -　gm_stylish 
 
+# 放弃
+
+- ~加入对google搜索时的过滤机制~  显然谷歌并没有那么多垃圾信息排在搜索的前列
