@@ -6,21 +6,20 @@
 
 # todo
 
-- ~~添加完成后点击过滤按钮进行提示~~ 
+
 - 用户添加脚本后，首次启动，进行向导 
 [原生js实现弹窗](http://www.cssscript.com/minimal-modal-window-with-plain-javascript/)
-
-- 更完善的过滤机制
-
 - 当更新脚本时gm_Value 应当不变，而不是焚毁掉
-- 对输入的域名匹配正则表达式
-- 不止限于油猴脚本，开发出chrome 扩展形式
+- 加入airbnb的code review 机制
+
 
 # 已完成
 
 -　百度首页不执行该脚本
 -　gm_stylish 
-
+-　更完善的过滤机制
+- 不止限于油猴脚本，开发出chrome 扩展形式
+- 添加完成后点击过滤按钮进行提示 
 # 放弃
 
 - ~加入对google搜索时的过滤机制~  显然谷歌并没有那么多垃圾信息排在搜索的前列

@@ -1,0 +1,27 @@
+{
+  "name": "fuckjb51",
+  "version": "1.0.0",
+  "description": "- 百度搜索默认过滤掉脚本之家(www.jb51.net ) 的内容\r - 添加一个输入框，输入指定的url，使得在搜索时，来屏蔽掉来自特定地址的内容\r - 添加完成后点击过滤按钮进行提示",
+  "main": "fuckjb51.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "lint": "eslint ./*.js",
+    "lint-html": "eslint **/*.js -f html -o ./reports/lint-results.html",
+    "lint-fix": "eslint --fix ./*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangolve/fuckjb51.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhangolve/fuckjb51/issues"
+  },
+  "homepage": "https://github.com/zhangolve/fuckjb51#readme",
+  "devDependencies": {
+    "eslint": "^3.12.0",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.1.0"
+  }
+}
