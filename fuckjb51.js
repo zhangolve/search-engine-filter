@@ -6,6 +6,9 @@
 // @author       zhangolve contact   zhangolve@gmail.com
 // @license      GPL version 2 or any later version; http://www.gnu.org/licenses/gpl-2.0.txt
 // @match        https://www.baidu.com/*
+// @match        https://www.google.co.jp/search?*
+// @match        https://www.google.com/*
+// @match        https://www.google.com.hk/*
 // @grant             GM_setValue
 // @grant             GM_getValue
 // @grant              GM_deleteValue
@@ -13,10 +16,16 @@
 // ==/UserScript==
 
 //加入监听DOM树，使该脚本能够应对百度网站上的异步加载
-
+var re = 'www.open-open.com\/.*?';
+var googleRe=/www.google.com|www.google.co.jp|www.google.cn|www.google.com.hk/;
+var getRe = GM_getValue('re', re);
+var reg = new RegExp(getRe);
+var host=window.location.host;
 var MObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+
 var observer = new MObserver(function(records){
-block();
+baiduFilter();
+googleFilter();
 addStyle();
 });
 var option = {
@@ -26,15 +35,10 @@ var option = {
 observer.observe(document.body, option);
 
 //block函数用来进行屏蔽
-function block() {
+function baiduFilter() {
 
 //当在search页面上时才进行加载脚本，防止在其他百度页面出现问题  
-if (window.location.search !== '') {
-
-var re = 'www.open-open.com\/.*?';
-
-var getRe = GM_getValue('re', re);
-var reg = new RegExp(getRe);
+if (window.location.search !== ''&&(host=='www.baidu.com')) {
 var items = [];
 var urls = [];
 for (var i = 1; i < 11; i++) {
@@ -50,6 +54,8 @@ items[i - 1].remove();
 }
 }
 
+ 
+    
 //添加一个自定义屏蔽网站添加栏，用于添加自定义的屏蔽网站
 
 var button = document.getElementById('su');
@@ -70,6 +76,31 @@ document.getElementById('filter').addEventListener('click', filter);
 
 }
 }
+
+ function googleFilter(){
+   
+if( googleRe.test(host))
+{
+    console.log('1');
+var queryList=document.getElementsByClassName('g');
+var queryNum=queryList.length;
+for(var i=0;i<queryNum;i++)
+{
+    let item=queryList[i];
+var node=item.getElementsByClassName('_Rm');
+    if(node.length!==0)
+    {
+     var url=node[0].innerHTML;
+       
+    if(reg.test(url))
+    {
+      item.remove();
+    }
+    }
+} 
+}
+ }     
+
 
 function filter() {
 var inputFilter = document.getElementById('inputFilter');
