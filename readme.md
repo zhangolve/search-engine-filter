@@ -7,11 +7,8 @@
 
 # todo
 
-
-- 用户添加脚本后，首次启动，进行向导 
-[原生js实现弹窗](http://www.cssscript.com/minimal-modal-window-with-plain-javascript/)
 - 当更新脚本时gm_Value 应当不变，而不是焚毁掉
-- ~加入对google搜索时的过滤机制~  显然谷歌并没有那么多垃圾信息排在搜索的前列
+
 
 # 已完成
 
@@ -21,5 +18,8 @@
 - 不止限于油猴脚本，开发出chrome 扩展形式
 - 添加完成后点击过滤按钮进行提示 
 - 加入airbnb的code review 机制
+- 加入对google搜索时的过滤机制~  显然谷歌并没有那么多垃圾信息排在搜索的前列
 
+# 日志
 
+2016.12.15 由于该脚本已经能够兼容谷歌，并且早就能够实现自定义过滤网站功能，将原项目名fuckJb51 更名为search-engine-filter
