@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "block-everything-on-baidu",
+  "name": "search-engine-filter",
   "description": "This extension shows a Google Image search result for the current page",
-  "version": "1.0",
+  "version": "1.0.1",
 
   "browser_action": {
     "default_icon": "icon.png",
@@ -17,7 +17,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.baidu.com/*","https://www.google.com/*","https://www.google.co.jp/*","https://www.google.com.hk/*"],
-      "js": ["fuckjb51.js"]
+      "js": ["filter.js"]
     }]
 }
 
