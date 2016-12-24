@@ -33,3 +33,13 @@ Observer（变动观察器）是监视DOM变动的接口。当DOM对象树发生
 要概念上，它很接近事件。可以理解为，当DOM发生变动会触发Mutation Observer事件。但是，它与事件有一个本质不同：事件是同步触发，也就是说DOM发生变动立刻会触发相应的事件；Mutation Observer则是异步触发，DOM发生变动以后，并不会马上触发，而是要等到当前所有DOM操作都结束后才触发。
 
 这样设计是为了应付DOM变动频繁的情况。举例来说，如果在文档中连续插入1000个段落（p元素），会连续触发1000个插入事件，执行每个事件的回调函数，这很可能造成浏览器的卡顿；而Mutation Observer完全不同，只在1000个段落都插入结束后才会触发，而且只触发一次。
+
+# inspired by
+
+- http://stackoverflow.com/questions/34852381/chrome-extension-post-data-to-rails-server-cross-origin-xmlhttprequest
+- https://github.com/storify/chrome
+- https://greasyfork.org/zh-CN/scripts/24192-kill-baidu-ad/code
+- http://stackoverflow.com/questions/22536620/jquery-posting-json-to-local-file
+
+
+JSON.stringfy();

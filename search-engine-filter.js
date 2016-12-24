@@ -16,6 +16,7 @@
 // ==/UserScript==
 
 //加入监听DOM树，使该脚本能够应对百度网站上的异步加载
+
 var re = 'www.open-open.com\/.*?';
 var googleRe=/www.google.com|www.google.co.jp|www.google.cn|www.google.com.hk/;
 var getRe = GM_getValue('re', re);

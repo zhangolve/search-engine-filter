@@ -1,0 +1,14 @@
+{
+
+
+    "ternjs": {
+        "exclude": ["wordpress/**", "node_modules/**"],
+        "libs": ["browser", "jquery"],
+        "plugins": {
+            "requirejs": {
+                "baseURL": "./js"
+            }
+        }
+
+    }
+}

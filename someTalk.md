@@ -3,6 +3,10 @@
 - 默认过滤搜索页上来自 www.jb51.net 的结果
 - 可以通过往输入框中添加过滤网站，形式如 www.jb51.net ,www.abc.com 等，无须使用http:// 作为开头。也可以过滤掉特定的内容来源，比如百度文库(wenku.baidu.com )
 
+![使用脚本之后](http://7ktu2f.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20161218082721.png)
+
+![使用脚本之前](http://7ktu2f.com1.z0.glb.clouddn.com/QQ截图20161218082721.png)
+
 # 安装
 
 安装方法
