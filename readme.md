@@ -36,6 +36,12 @@ https://chrome.google.com/webstore/detail/search-engine-filter/clkhhmchimakdcfbd
 
 ![](http://7ktu2f.com1.z0.glb.clouddn.com/search-engine-filter.gif)
 
+# 其他须知
+
+由于油猴脚本与Chrome扩展的实现方式不同，Chrome扩展目前做到的是将过滤规则存放到站点的localStorage当中，这导致谷歌和百度的屏蔽规则并不相同，也让用户可以根据自己使用谷歌和百度的情况自定义搜索规则。
+
+而使用油猴脚本，则是无论你是在谷歌搜索页还是百度搜索页添加的过滤规则，都将同时作用于这些搜索引擎。
+
 # Github
 
 https://github.com/zhangolve/search-engine-filter  
