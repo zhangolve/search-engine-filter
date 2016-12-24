@@ -50,7 +50,7 @@ if (showurl.length !== 0) {
 //添加一个自定义屏蔽网站添加栏，用于添加自定义的屏蔽网站
 
 
-/*var button = document.getElementById('su');
+var button = document.getElementById('su');
 var s_tab = document.getElementById('s_tab');
 if(document.getElementById('inputFilter')===null)
 {
@@ -64,7 +64,7 @@ filterButton.setAttribute('id', 'filter');
 s_tab.appendChild(inputFilter);
 s_tab.appendChild(filterButton);
 document.getElementById('filter').addEventListener('click', filter);
-}*/
+}
 
 }
 }
@@ -93,7 +93,7 @@ var node=item.getElementsByClassName('_Rm');
 }
  }     
 
-/*
+
 function filter() {
 var inputFilter = document.getElementById('inputFilter');
 if (inputFilter.value !== '') {
@@ -107,4 +107,3 @@ alert('请输入需要过滤的域名');
 }
 }
 
-*/

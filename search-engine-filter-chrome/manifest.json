@@ -9,6 +9,10 @@
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
+  "web_accessible_resources": [
+  "jquery-3.1.1.min.js"
+  ]
+  ,
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/"

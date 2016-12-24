@@ -2,8 +2,14 @@
 var re = 'www.jb51.net\/.*?';
 var googleRe=/www.google.com|www.google.co.jp|www.google.cn|www.google.com.hk/;
 //var getRe = GM_getValue('re', re);
+if(localStorage.getItem('filter')==null)
+{
 localStorage.setItem('filter',re);
+
+}
+
 var getRe=localStorage.getItem('filter');
+console.log(getRe);
 var reg = new RegExp(getRe);
 var host=window.location.host;
 var MObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
@@ -11,7 +17,7 @@ var MObserver = window.MutationObserver || window.WebKitMutationObserver || wind
 var observer = new MObserver(function(records){
 baiduFilter();
 googleFilter();
-addStyle();
+
 });
 var option = {
 'childList': true,
@@ -31,19 +37,20 @@ items.push(document.getElementById(i));
 var showurl = items[i - 1].getElementsByClassName('c-showurl');
 
 if (showurl.length !== 0) {
-urls.push(items[i - 1].getElementsByClassName('c-showurl')[0].innerHTML);
-if (reg.test(urls[i - 1])) {
-console.log(urls[i-1]);  
-items[i - 1].remove();
-}
-}
+    urls.push(items[i - 1].getElementsByClassName('c-showurl')[0].innerHTML);
+    if (reg.test(urls[i - 1])) {
+        console.log("urldelete",urls[i-1]);  
+        items[i - 1].remove();
+        }
+    }
 }
 
  
     
 //添加一个自定义屏蔽网站添加栏，用于添加自定义的屏蔽网站
 
-var button = document.getElementById('su');
+
+/*var button = document.getElementById('su');
 var s_tab = document.getElementById('s_tab');
 if(document.getElementById('inputFilter')===null)
 {
@@ -57,7 +64,7 @@ filterButton.setAttribute('id', 'filter');
 s_tab.appendChild(inputFilter);
 s_tab.appendChild(filterButton);
 document.getElementById('filter').addEventListener('click', filter);
-}
+}*/
 
 }
 }
@@ -66,7 +73,7 @@ document.getElementById('filter').addEventListener('click', filter);
    
 if( googleRe.test(host))
 {
-    console.log('1');
+
 var queryList=document.getElementsByClassName('g');
 var queryNum=queryList.length;
 for(var i=0;i<queryNum;i++)
@@ -86,7 +93,7 @@ var node=item.getElementsByClassName('_Rm');
 }
  }     
 
-
+/*
 function filter() {
 var inputFilter = document.getElementById('inputFilter');
 if (inputFilter.value !== '') {
@@ -100,3 +107,4 @@ alert('请输入需要过滤的域名');
 }
 }
 
+*/
