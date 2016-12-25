@@ -8,6 +8,12 @@
 # todo
 
 - 当更新脚本时gm_Value 应当不变，而不是焚毁掉
+- 添加屏蔽列表规则，包括莆田系医院及
+https://github.com/ligyxy/Blocklist/blob/master/BLOCKLIST
+
+- 查看屏蔽网站列表，取消屏蔽
+- 能够导入导出过滤规则。localstroage的方式。
+
 
 
 # 已完成

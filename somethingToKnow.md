@@ -41,7 +41,7 @@ git 无法对github仓库进行clone push 等常规操作
 设置git 代理，前提是有代理，能够进行科学上网。
 
 
-    git config --global http.proxy http://127.0.0.1:1080 
+    git config --global http.proxy sock5://127.0.0.1:1080 
 
 
 查看
