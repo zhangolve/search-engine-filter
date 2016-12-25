@@ -128,7 +128,7 @@ function inputFilter(tab) {
 //不能直接使用export 关键字
 var exportFile =
     function a() {
-        alert('fjeifj');
+        
         chrome.storage.sync.get('filter', function(data) {
             var result = JSON.stringify(data);
             var url = 'data:application/json;base64,' + btoa(result);
