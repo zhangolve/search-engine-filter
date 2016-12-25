@@ -11,10 +11,11 @@
 - 添加屏蔽列表规则，包括莆田系医院及
 https://github.com/ligyxy/Blocklist/blob/master/BLOCKLIST
 
-- 查看屏蔽网站列表，取消屏蔽
-- 能够导入导出过滤规则。localstroage的方式。
+- 查看屏蔽网站列表，取消屏蔽 ，可以通过导出规则编辑修改做。
+- 能够导入导出过滤规则。现在已经实现了导出规则，接下来做导入规则。
 
-- 了解Chrome扩展的自带的storage怎么用
+- 已经实现了Chrome扩展内的存储，因此也就可以把几个输入框和按钮放到popup.html文件里了。
+
 
 # 已完成
 
@@ -25,7 +26,7 @@ https://github.com/ligyxy/Blocklist/blob/master/BLOCKLIST
 - 添加完成后点击过滤按钮进行提示 
 - 加入airbnb的code review 机制
 - 加入对google搜索时的过滤机制~  显然谷歌并没有那么多垃圾信息排在搜索的前列
-
+- 了解Chrome扩展的自带的storage怎么用
 # 日志
 
 2016.12.15 由于该脚本已经能够兼容谷歌，并且早就能够实现自定义过滤网站功能，将原项目名fuckJb51 更名为search-engine-filter
