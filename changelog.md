@@ -14,7 +14,7 @@ https://github.com/ligyxy/Blocklist/blob/master/BLOCKLIST
 - 查看屏蔽网站列表，取消屏蔽
 - 能够导入导出过滤规则。localstroage的方式。
 
-
+- 了解Chrome扩展的自带的storage怎么用
 
 # 已完成
 

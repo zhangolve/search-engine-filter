@@ -54,3 +54,6 @@ git 无法对github仓库进行clone push 等常规操作
         
         git set-url http://github.com/zhangolve/example
 
+# Chrome storage
+
+[Youtube 系列教程](https://www.youtube.com/playlist?list=PLYxzS__5yYQlWil-vQ-y7NR902ovyq1Xi)

@@ -1,33 +1,44 @@
 //加入监听DOM树，使该脚本能够应对百度网站上的异步加载
-let re;
-if (localStorage.getItem('filter') === null) {
-    re = 'www.jb51.net\/.*?';
-} else {
-    re = localStorage.getItem('filter');
-}
+let getRe;
 var googleRe = /www.google.com|www.google.co.jp|www.google.cn|www.google.com.hk/;
-//var getRe = GM_getValue('re', re);
-localStorage.setItem('filter', re);
-var getRe = localStorage.getItem('filter');
-var reg = new RegExp(getRe);
+console.log('initial',chrome.downloads);
 var host = window.location.host;
-var MObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+chrome.storage.sync.get('filter', function(data) {
+    console.log(data);
+    if (data.filter == undefined) //如果过滤规则为空，则使用默认的过滤规则
+    {   
+        chrome.storage.sync.set({'filter':'www.jb51.net/.*?|www.wuji8.com/.*?'});
+        getRe = 'www.jb51.net/.*?|www.wuji8.com/.*?';
+        var reg = new RegExp(getRe);
+        MObserver(reg);
+    } else {
+        getRe = data.filter;
+        var reg = new RegExp(getRe);
+        MObserver(reg);
+    }
+})
 
-var observer = new MObserver(function(records) {
-    baiduFilter();
-    googleFilter();
 
-});
-var option = {
-    'childList': true,
+function MObserver(reg) {
+    console.log(reg);
+    var MObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+    var observer = new MObserver(function(records) {
+        baiduFilter(reg);
+        googleFilter(reg);
 
-};
-observer.observe(document.body, option);
+    });
+
+
+    var option = {
+        'childList': true,
+
+    };
+
+    observer.observe(document.body, option);
+}
 
 //block函数用来进行屏蔽
-function baiduFilter() {
-
-    //当在search页面上时才进行加载脚本，防止在其他百度页面出现问题  
+function baiduFilter(reg) {
     if (window.location.search !== '' && (host == 'www.baidu.com')) {
         var items = [];
         var urls = [];
@@ -43,9 +54,6 @@ function baiduFilter() {
                 }
             }
         }
-
-
-
         //添加一个自定义屏蔽网站添加栏，用于添加自定义的屏蔽网站
 
         var button = document.getElementById('su');
@@ -55,7 +63,7 @@ function baiduFilter() {
     }
 }
 
-function googleFilter() {
+function googleFilter(reg) {
 
     if (googleRe.test(host)) {
         var queryList = document.getElementsByClassName('g');
@@ -71,7 +79,7 @@ function googleFilter() {
                 }
             }
         }
-        var tab=document.getElementById('hdtb-msb');
+        var tab = document.getElementById('hdtb-msb');
         inputFilter(tab);
     }
 }
@@ -80,12 +88,15 @@ function googleFilter() {
 function filter() {
     var inputFilter = document.getElementById('inputFilter');
     if (inputFilter.value !== '') {
-        getRe = localStorage.getItem('filter');
-        getRe = getRe + '|' + inputFilter.value + '\/.*?';
-        //GM_setValue('re', getRe);
-        localStorage.setItem('filter', getRe);
-        alert('已添加过滤地址');
-        window.location.reload(true);
+        chrome.storage.sync.get('filter', function(data) {
+            console.log(data);
+            console.log('getRe', getRe);
+            getRe = getRe + '|' + inputFilter.value + '\/.*?';
+            chrome.storage.sync.set({ 'filter': getRe });
+            alert('已添加过滤地址');
+            window.location.reload(true);
+        });
+
     } else {
         alert('请输入需要过滤的域名');
     }
@@ -95,8 +106,8 @@ function inputFilter(tab) {
     if (document.getElementById('inputFilter') === null) {
         var inputFilter = document.createElement('input');
         inputFilter.setAttribute('id', 'inputFilter');
-        inputFilter.setAttribute('class','hdtb-dd-b');
-        
+        inputFilter.setAttribute('class', 'hdtb-dd-b');
+
         inputFilter.setAttribute('placeholder', '过滤域名');
         var filterButton = document.createElement('input');
         filterButton.setAttribute('type', 'submit');
@@ -105,5 +116,27 @@ function inputFilter(tab) {
         tab.appendChild(inputFilter);
         tab.appendChild(filterButton);
         document.getElementById('filter').addEventListener('click', filter);
+        //创建一个输入按钮
+        var exportBtn = document.createElement('button');
+        exportBtn.innerHTML = "导出";
+        exportBtn.addEventListener('click', exportFile);
+        tab.appendChild(exportBtn);
     }
 }
+
+
+//不能直接使用export 关键字
+var exportFile =
+    function a() {
+        alert('fjeifj');
+        chrome.storage.sync.get('filter', function(data) {
+            var result = JSON.stringify(data);
+            var url = 'data:application/json;base64,' + btoa(result);
+            
+            chrome.runtime.sendMessage({'filter': url}, function(response) {
+            console.log(response.filter);
+            });
+            
+        });
+        
+    };
