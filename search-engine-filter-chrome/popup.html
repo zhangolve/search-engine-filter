@@ -1,23 +1,16 @@
-<!doctype html>
+<!doctype>
 <!--
  This page is shown when the extension button is clicked, because the
  "browser_action" field in manifest.json contains the "default_popup" key with
  value "popup.html".
  -->
-<html>
+<html lang="zh">
   <head>
-    <title>Getting Started Extension's Popup</title>
+    <title>扩展介绍</title>
     <style>
       body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
         font-size: 100%;
-      }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
       }
     </style>
 
@@ -30,7 +23,6 @@
   
   </head>
   <body>
-    <div id="status" ></div>
     <div style={width:"500px"}>
     <p>这是一个用来屏蔽百度搜索垃圾信息的chrome 扩展程序</p>
     <p>感谢您的安装</p>
@@ -43,6 +35,6 @@
     </p>
     </div>
   </body>
-  <script src="setRules.js"></script>
+  <script src="setRules.js" type="text/javascript"></script>
 </html>
 
