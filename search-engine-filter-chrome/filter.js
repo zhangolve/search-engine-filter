@@ -106,17 +106,16 @@ function inputFilter(tab) {
         inputFilter.setAttribute('id', 'inputFilter');
         inputFilter.setAttribute('class', 'hdtb-dd-b');
         inputFilter.setAttribute('placeholder', '过滤域名');
-        var filterButton = document.createElement('input');
-        filterButton.setAttribute('type', 'submit');
-        filterButton.setAttribute('value', '过滤');
-        filterButton.setAttribute('id', 'filter');
-        tab.appendChild(inputFilter);
-        tab.appendChild(filterButton);
-        document.getElementById('filter').addEventListener('click', filterHandler);
+        // 创建一个过滤按钮
+        var filterButton = document.createElement('button');
+        filterButton.innerHTML = "添加过滤";
+        filterButton.addEventListener('click', filterHandler);
         //创建一个输入按钮
         var exportBtn = document.createElement('button');
         exportBtn.innerHTML = "导出";
         exportBtn.addEventListener('click', exportFile);
+        tab.appendChild(inputFilter);
+        tab.appendChild(filterButton);
         tab.appendChild(exportBtn);
     }
 }
