@@ -7,9 +7,9 @@ let host = window.location.host;
 
 function init() {
     chrome.storage.sync.get('filter', function(data) {
+        console.log(data.filter)
         if (!data.filter) { //如果过滤规则为空，则不过滤
-//            chrome.storage.sync.set({'filter': ''});
-            getRe = '';
+            getRe = '^$';
             var reg = new RegExp(getRe);
         } else {
             getRe = data.filter;
@@ -58,15 +58,3 @@ function googleFilter(reg) {
         })
     }
 }
-
-
-//不能直接使用export 关键字
-var exportFile =
-    function a() {
-        chrome.storage.sync.get('filter', function(data) {
-            var result = JSON.stringify(data);
-            var url = 'data:application/json;base64,' + btoa(result);
-            chrome.runtime.sendMessage({'filter': url}, function(response) {
-            });
-        });
-    };

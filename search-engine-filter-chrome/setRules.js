@@ -2,6 +2,7 @@
 var setInitialFilter = function() {
     chrome.storage.sync.get('filter', function(data) {
         var filter = data.filter;
+        console.log(data.filter)
     })    
 };
 
@@ -15,7 +16,12 @@ function filterHandler() {
     if (inputFilter.value !== '') {
         // 需要增加网址的正则判断
         chrome.storage.sync.get('filter', function(data) {
-            var getRe = data.filter + "|" + inputFilter.value + "\/.*?";
+            console.log(data.filter)
+            if (data.filter) {
+                var getRe = data.filter + "|" + inputFilter.value + "\/.*?";
+            } else {
+                var getRe = inputFilter.value + "\/.*?"
+            }
             chrome.storage.sync.set({ 'filter': getRe });
             window.location.reload(true);
         });
@@ -30,12 +36,8 @@ var listFilter = function () {
         let rs = data.filter.split('|')
         var index = 0
         rs.forEach(function(item) {
-            if (item.length > 0) {
-                $('#rules tbody').append('<tr><td> ' + item.replace('/.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
-                index += 1
-            } else {
-                index += 1
-            }
+            $('#rules tbody').append('<tr><td> ' + item.replace('/.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
+            index += 1
         })
     })
 }
@@ -46,9 +48,7 @@ $(document).on('click', '.deleteRules', function() {
     chrome.storage.sync.get('filter', function(data) {
         let rs = data.filter.split('|')
         rs.splice(index, 1)
-        if (rs.length > 0) {
-            chrome.storage.sync.set({'filter': rs.join('|')})
-        }
+        chrome.storage.sync.set({'filter': rs.join('|')})
     })
     window.location.reload(true)
 })
