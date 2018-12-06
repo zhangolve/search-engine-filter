@@ -1,25 +1,26 @@
 {
-  "manifest_version": 2,
-
-  "name": "search-engine-filter",
-  "description": "search engine filter",
-  "version": "1.0.2",
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
-  },
-  "background": { "scripts": ["background.js"] },
-  "permissions": [
-    "activeTab",
-    "storage",
-    "*://*/*", 
-    "downloads"
-  ],
- 
-  "content_scripts": [
-    {
-      "matches": ["https://www.baidu.com/*","https://www.google.com/*","https://www.google.co.jp/*","https://www.google.com.hk/*"],
-      "js": ["filter.js"]
-    }]
+    "manifest_version": 2,
+    "name": "search-engine-filter",
+    "description": "search engine filter",
+    "version": "1.0.3",
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+    "background": { 
+        "scripts": [ "background.js" ] 
+    },
+    "permissions": [
+        "activeTab",
+        "storage",
+        "*://*/*", 
+        "downloads"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["https://www.baidu.com/*","https://www.google.com/*","https://www.google.co.jp/*","https://www.google.com.hk/*"],
+            "js": ["filter.js"]
+        }
+    ]
 }
 

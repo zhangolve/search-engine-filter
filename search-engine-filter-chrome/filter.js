@@ -7,8 +7,7 @@ let host = window.location.host;
 
 function init() {
     chrome.storage.sync.get('filter', function(data) {
-        if (!data.filter) //如果过滤规则为空，则使用默认的过滤规则
-        {   
+        if (!data.filter) { //如果过滤规则为空，则使用默认的过滤规则
             chrome.storage.sync.set({'filter':'www.jb51.net\/.*?|www.wuji8.com\/.*?'});
             getRe = 'www.jb51.net\/.*?|www.wuji8.com\/.*?';
             var reg = new RegExp(getRe);
@@ -33,7 +32,6 @@ function MObserver(reg) {
         baiduFilter(reg);
         googleFilter(reg);
     });
-
 
     var option = {
         'childList': true
@@ -62,7 +60,6 @@ function baiduFilter(reg) {
         var button = document.getElementById('su');
         var s_tab = document.getElementById('s_tab');
         inputFilter(s_tab);
-
     }
 }
 
