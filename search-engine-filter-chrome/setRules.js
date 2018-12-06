@@ -18,10 +18,10 @@ function filterHandler() {
         chrome.storage.sync.get('filter', function(data) {
             if (data.filter) {
                 if (!isStringInArray(inputFilter.value, data.filter.split('|'))) {
-                    var getRe = data.filter + "|" + inputFilter.value + "\/.*?";
+                    var getRe = data.filter + "|" + inputFilter.value + "\/{0,}.*?";
                 }
             } else {
-                var getRe = inputFilter.value + "\/.*?"
+                var getRe = inputFilter.value + "\/{0,}.*?"
             }
             chrome.storage.sync.set({ 'filter': getRe });
             window.location.reload(true);
@@ -49,7 +49,7 @@ var listFilter = function () {
         let rs = data.filter.split('|')
         var index = 0
         rs.forEach(function(item) {
-            $('#rules tbody').append('<tr><td> ' + item.replace('/.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
+            $('#rules tbody').append('<tr><td> ' + item.replace('/{0,}.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
             index += 1
         })
     })
