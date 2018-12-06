@@ -16,9 +16,10 @@ function filterHandler() {
     if (inputFilter.value !== '') {
         // 需要增加网址的正则判断
         chrome.storage.sync.get('filter', function(data) {
-            console.log(data.filter)
             if (data.filter) {
-                var getRe = data.filter + "|" + inputFilter.value + "\/.*?";
+                if (!isStringInArray(inputFilter.value, data.filter.split('|'))) {
+                    var getRe = data.filter + "|" + inputFilter.value + "\/.*?";
+                }
             } else {
                 var getRe = inputFilter.value + "\/.*?"
             }
@@ -29,6 +30,18 @@ function filterHandler() {
         alert('请输入需要过滤的域名');
     }
 };
+
+
+var isStringInArray = function (s, arr) {
+    var s = new RegExp(s)
+    var flag = false
+    arr.forEach(function(item) {
+        if (s.test(item)) {
+            flag = true
+        }
+    })
+    return flag
+}
 
 
 var listFilter = function () {

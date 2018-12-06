@@ -7,20 +7,22 @@
       body {
         font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
         font-size: 100%;
+        width: 400px;
       }
     </style>
-
+    <link rel="stylesheet" href="milligram.min.css"/>
   </head>
   <body>
-    <div style={width:"500px"}>
-    <p>这是一个用来屏蔽百度搜索垃圾信息的chrome 扩展程序</p>
+    <h3> search-engine-filter </h3>
+    <div style="width:'500px'">
+    <p>这是一个用来屏蔽搜索垃圾信息的chrome 扩展程序</p>
     <p>感谢您的安装</p>
-    <input id="inputFilter" placeholder="www.abc.com" />
+    <input id="inputFilter" placeholder="www.abc.com" type="text" style="width: 60%"/>
     <button type="primary" id="submit">添加过滤</button>
 
     <p>
-    使用说明或其他，请访问
-    <a href="https://github.com/zhangolve/search-engine-filter" target="_blank"/>github.com/zhangolve/search-engine-filter</a>
+    使用说明或其他，请
+    <a href="https://github.com/kosmgco/search-engine-filter" target="_blank"/>click me</a>
     </p>
     </div>
   </body>
