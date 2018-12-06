@@ -1,9 +1,7 @@
 # 功能
 
-- 默认过滤搜索页上来自 www.jb51.net 的结果
+- ~~默认过滤搜索页上来自 www.jb51.net 的结果~~ 默认不过滤搜索结果
 - 可以通过往输入框中添加过滤网站，形式如 www.jb51.net ,www.abc.com 等，无须使用http:// 作为开头。也可以过滤掉特定的内容来源，比如百度文库(wenku.baidu.com )
-
-
 
 # 安装
 
@@ -20,17 +18,12 @@ chrome 用户请戳 https://chrome.google.com/webstore/detail/tampermonkey/dhdgf
 
 ## chrome 扩展安装
 
-提供离线crx文件 
-百度盘无密码 https://pan.baidu.com/s/1nvK0s5b
-百度盘有密码 https://pan.baidu.com/s/1o8yJ7Fs  ysnk
-
-
 Chrome应用商店下载地址： 
 https://chrome.google.com/webstore/detail/search-engine-filter/clkhhmchimakdcfbdohhnkjlljkimmgi/related?hl=zh-CN
 
 # 使用方法
 
-安装好后，在打开百度搜索或谷歌搜索，进入搜索页面后会自行根据过滤规则进行过滤，默认的过滤规则是过滤掉来自www.jb51.net ，也就是垃圾脚本之家的内容。用户可以通过在输入框中输入自定义的过滤规则，将自己讨厌的不想看到的搜索内容过滤掉。
+安装好后，在打开百度搜索或谷歌搜索，进入搜索页面后会自行根据过滤规则进行过滤，~~默认的过滤规则是过滤掉来自www.jb51.net ，也就是垃圾脚本之家的内容。~~ 用户可以通过在输入框中输入自定义的过滤规则，将自己讨厌的不想看到的搜索内容过滤掉。
 
 具体的使用方法，请看GIF。图示为百度搜索时的使用方法，谷歌搜索类似。
 
@@ -48,12 +41,7 @@ https://github.com/zhangolve/search-engine-filter
 
 喜欢的可以给个star,目前油猴脚本功能上已经稳定了，Chrome 扩展还有很大待开发余地。
 
-
-
-
-
 # 题外话
-
 
 ## 为什么会开发这个脚本（扩展）
 
@@ -62,8 +50,3 @@ https://github.com/zhangolve/search-engine-filter
 之后，又陆续给这个脚本添加了几个小功能，比如能够添加自定义的过滤url，搜索引擎也不再只限制在百度这一个上了，而是拓展到了包括谷歌原站，谷歌日本，谷歌香港等站点，原来的项目名，fuckjb51也就不再适合了，因此改成了现在的名字search-engine-filter（搜索引擎页面内容过滤）
 
 后来，我又想到其实可以做一个 Chrome 扩展，毕竟在百度搜索页展示一个多余的输入框和醒目的按钮并不是很好的设计。而 Chrome 扩展也能方便使用Chrome 的人群。在v1.0.1版本中，仍然采用在搜索结果页面中添加输入框和提交按钮的方式来交互，后期可能会对这一交互方式进行更改。
-
-
-
-
-
