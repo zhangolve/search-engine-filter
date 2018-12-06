@@ -2,9 +2,6 @@
 var setInitialFilter = function() {
     chrome.storage.sync.get('filter', function(data) {
         var filter = data.filter;
-        if(!filter) {
-            chrome.storage.sync.set({'filter':'www.jb51.net\/.*?|www.wuji8.com\/.*?'});
-        }
     })    
 };
 
@@ -20,7 +17,6 @@ function filterHandler() {
         chrome.storage.sync.get('filter', function(data) {
             var getRe = data.filter + "|" + inputFilter.value + "\/.*?";
             chrome.storage.sync.set({ 'filter': getRe });
-            alert('已添加过滤地址');
             window.location.reload(true);
         });
     } else {
@@ -28,3 +24,33 @@ function filterHandler() {
     }
 };
 
+
+var listFilter = function () {
+    chrome.storage.sync.get('filter', function (data) {
+        let rs = data.filter.split('|')
+        var index = 0
+        rs.forEach(function(item) {
+            if (item.length > 0) {
+                $('#rules tbody').append('<tr><td> ' + item.replace('/.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
+                index += 1
+            } else {
+                index += 1
+            }
+        })
+    })
+}
+
+
+$(document).on('click', '.deleteRules', function() {
+    var index = $(this).attr('data')
+    chrome.storage.sync.get('filter', function(data) {
+        let rs = data.filter.split('|')
+        rs.splice(index, 1)
+        if (rs.length > 0) {
+            chrome.storage.sync.set({'filter': rs.join('|')})
+        }
+    })
+    window.location.reload(true)
+})
+
+listFilter()
