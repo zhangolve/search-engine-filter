@@ -16,9 +16,7 @@ function init() {
             var reg = new RegExp(getRe);
         }
         MObserver(reg);
-        baiduFilter(reg);
-        googleFilter(reg);
-        bingFilter(reg)
+        blockBaiduRight()
     })
 }
 
@@ -66,5 +64,11 @@ function bingFilter(reg) {
                 $(item).remove()
             }
         })
+    }
+}
+
+function blockBaiduRight() {
+    if(window.location.search !== '' && (host == 'www.baidu.com')) {
+        $('#content_right').remove()
     }
 }
