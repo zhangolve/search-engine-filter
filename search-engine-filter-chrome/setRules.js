@@ -46,12 +46,14 @@ var isStringInArray = function (s, arr) {
 
 var listFilter = function () {
     chrome.storage.sync.get('filter', function (data) {
-        let rs = data.filter.split('|')
-        var index = 0
-        rs.forEach(function(item) {
-            $('#rules tbody').append('<tr><td> ' + item.replace('/{0,}.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
-            index += 1
-        })
+        if (data.filter.length > 0) { 
+            let rs = data.filter.trim().split('|')
+            var index = 0
+            rs.forEach(function(item) {
+                $('#rules tbody').append('<tr><td> ' + item.replace('/{0,}.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
+                index += 1
+            })
+        }
     })
 }
 
