@@ -59,19 +59,19 @@ if (/options/.test(window.location.href)) {
         window.location.reload(true)
     })
     listFilter()
-}
 
-$('#exportRules').on('click', function(){
-    chrome.storage.sync.get('filter', function (data) {
-        var result = {'filters': []}
-        data.filter.split('|').forEach(function(item) {
-            result.filters.push(item.replace('/{0,}.*?', ''))
+    $('#exportRules').on('click', function(){
+        chrome.storage.sync.get('filter', function (data) {
+            var result = {'filters': []}
+            data.filter.split('|').forEach(function(item) {
+                result.filters.push(item.replace('/{0,}.*?', ''))
+            })
+            result = JSON.stringify(result)
+            var url = 'data:application/json;base64,' + btoa(result);
+                
+            chrome.runtime.sendMessage({'filter': url}, function(response) {
+                console.log(response)
+            });
         })
-        result = JSON.stringify(result)
-        var url = 'data:application/json;base64,' + btoa(result);
-            
-        chrome.runtime.sendMessage({'filter': url}, function(response) {
-            console.log(response)
-        });
     })
-})
+}
