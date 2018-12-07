@@ -1,3 +1,9 @@
+document.onkeydown = function (e) {
+    if (e.keyCode == 13) {
+        filterHandler()
+    }
+}
+
 var submit = document.getElementById('submit');
 submit.addEventListener('click', filterHandler);
 
