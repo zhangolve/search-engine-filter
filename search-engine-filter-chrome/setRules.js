@@ -1,13 +1,3 @@
-// 添加过滤规则
-var setInitialFilter = function() {
-    chrome.storage.sync.get('filter', function(data) {
-        var filter = data.filter;
-        console.log(data.filter)
-    })    
-};
-
-setInitialFilter();
-
 var submit = document.getElementById('submit');
 submit.addEventListener('click', filterHandler);
 
@@ -58,14 +48,30 @@ var listFilter = function () {
 }
 
 
-$(document).on('click', '.deleteRules', function() {
-    var index = $(this).attr('data')
-    chrome.storage.sync.get('filter', function(data) {
-        let rs = data.filter.split('|')
-        rs.splice(index, 1)
-        chrome.storage.sync.set({'filter': rs.join('|')})
+if (/options/.test(window.location.href)) {
+    $(document).on('click', '.deleteRules', function() {
+        var index = $(this).attr('data')
+        chrome.storage.sync.get('filter', function(data) {
+            let rs = data.filter.split('|')
+            rs.splice(index, 1)
+            chrome.storage.sync.set({'filter': rs.join('|')})
+        })
+        window.location.reload(true)
     })
-    window.location.reload(true)
-})
+    listFilter()
+}
 
-listFilter()
+$('#exportRules').on('click', function(){
+    chrome.storage.sync.get('filter', function (data) {
+        var result = {'filters': []}
+        data.filter.split('|').forEach(function(item) {
+            result.filters.push(item.replace('/{0,}.*?', ''))
+        })
+        result = JSON.stringify(result)
+        var url = 'data:application/json;base64,' + btoa(result);
+            
+        chrome.runtime.sendMessage({'filter': url}, function(response) {
+            console.log(response)
+        });
+    })
+})

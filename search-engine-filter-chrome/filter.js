@@ -1,6 +1,3 @@
-//加入监听DOM树，使该脚本能够应对百度网站上的异步加载
-// 可以过滤的是谷歌和百度
-
 let getRe;
 let googleRe = /www.google.com|www.google.co.jp|www.google.cn|www.google.com.hk/;
 let bingRe = /cn.bing.com|www.bing.com/;
@@ -16,7 +13,6 @@ function init() {
             var reg = new RegExp(getRe);
         }
         MObserver(reg);
-        blockBaiduRight()
     })
 }
 
@@ -39,11 +35,13 @@ function MObserver(reg) {
 function baiduFilter(reg) {
     if (window.location.search !== '' && (host == 'www.baidu.com')) {
         $('.result').each(function(index, item) {
-            let showurl = $(item).find('.c-showurl').text()
-            if (showurl.length != 0 && reg.test(showurl)) {
-               $(item).remove()
+            if (reg.test($(item).text())) {
+                $(item).remove()
             }
         })
+
+        // 屏蔽右侧广告
+        $('#content_right').remove()
     }
 }
 
@@ -64,11 +62,5 @@ function bingFilter(reg) {
                 $(item).remove()
             }
         })
-    }
-}
-
-function blockBaiduRight() {
-    if(window.location.search !== '' && (host == 'www.baidu.com')) {
-        $('#content_right').remove()
     }
 }
