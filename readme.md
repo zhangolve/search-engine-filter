@@ -2,6 +2,12 @@
 
 - 可以通过往输入框中添加过滤网站，形式如 www.jb51.net ,www.abc.com 等，无须使用http:// 作为开头。也可以过滤掉特定的内容来源，比如百度文库(wenku.baidu.com )
 
+# screenshot
+![popup](https://static.ooops.me/md-upload-1544087896481.png)
+
+
+![options](https://static.ooops.me/md-upload-1544087979623.png)
+
 # 安装
 
 安装方法

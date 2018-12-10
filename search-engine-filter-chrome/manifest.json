@@ -19,8 +19,9 @@
     "options_page": "options.html",
     "content_scripts": [
         {
-            "matches": ["https://www.baidu.com/*","https://www.google.com/*","https://www.google.co.jp/*","https://www.google.com.hk/*"],
-            "js": ["jquery.js", "filter.js"]
+            "matches": ["<all_urls>"],
+            "js": ["jquery.js", "filter.js"],
+            "run_at": "document_end"
         }
     ]
 }

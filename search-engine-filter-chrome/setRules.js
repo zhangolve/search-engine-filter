@@ -1,12 +1,8 @@
-// 添加过滤规则
-var setInitialFilter = function() {
-    chrome.storage.sync.get('filter', function(data) {
-        var filter = data.filter;
-        console.log(data.filter)
-    })    
-};
-
-setInitialFilter();
+document.onkeydown = function (e) {
+    if (e.keyCode == 13) {
+        filterHandler()
+    }
+}
 
 var submit = document.getElementById('submit');
 submit.addEventListener('click', filterHandler);
@@ -18,10 +14,10 @@ function filterHandler() {
         chrome.storage.sync.get('filter', function(data) {
             if (data.filter) {
                 if (!isStringInArray(inputFilter.value, data.filter.split('|'))) {
-                    var getRe = data.filter + "|" + inputFilter.value + "\/.*?";
+                    var getRe = data.filter + "|" + inputFilter.value + "\/{0,}.*?";
                 }
             } else {
-                var getRe = inputFilter.value + "\/.*?"
+                var getRe = inputFilter.value + "\/{0,}.*?"
             }
             chrome.storage.sync.set({ 'filter': getRe });
             window.location.reload(true);
@@ -46,24 +42,42 @@ var isStringInArray = function (s, arr) {
 
 var listFilter = function () {
     chrome.storage.sync.get('filter', function (data) {
-        let rs = data.filter.split('|')
-        var index = 0
-        rs.forEach(function(item) {
-            $('#rules tbody').append('<tr><td> ' + item.replace('/.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
-            index += 1
-        })
+        if (data.filter.length > 0) { 
+            let rs = data.filter.trim().split('|')
+            var index = 0
+            rs.forEach(function(item) {
+                $('#rules tbody').append('<tr><td> ' + item.replace('/{0,}.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
+                index += 1
+            })
+        }
     })
 }
 
 
-$(document).on('click', '.deleteRules', function() {
-    var index = $(this).attr('data')
-    chrome.storage.sync.get('filter', function(data) {
-        let rs = data.filter.split('|')
-        rs.splice(index, 1)
-        chrome.storage.sync.set({'filter': rs.join('|')})
+if (/options/.test(window.location.href)) {
+    $(document).on('click', '.deleteRules', function() {
+        var index = $(this).attr('data')
+        chrome.storage.sync.get('filter', function(data) {
+            let rs = data.filter.split('|')
+            rs.splice(index, 1)
+            chrome.storage.sync.set({'filter': rs.join('|')})
+        })
+        window.location.reload(true)
     })
-    window.location.reload(true)
-})
+    listFilter()
 
-listFilter()
+    $('#exportRules').on('click', function(){
+        chrome.storage.sync.get('filter', function (data) {
+            var result = {'filters': []}
+            data.filter.split('|').forEach(function(item) {
+                result.filters.push(item.replace('/{0,}.*?', ''))
+            })
+            result = JSON.stringify(result)
+            var url = 'data:application/json;base64,' + btoa(result);
+                
+            chrome.runtime.sendMessage({'filter': url}, function(response) {
+                console.log(response)
+            });
+        })
+    })
+}
