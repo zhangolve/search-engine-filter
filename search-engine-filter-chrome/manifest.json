@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
     "name": "search-engine-filter",
-    "description": "search engine filter",
-    "version": "1.0.3",
+    "description": "在百度谷歌等搜索引擎的搜索结果中，根据自定义的过滤规则，过滤掉来自特定网站的搜索结果",
+    "version": "1.0.5",
     "browser_action": {
         "default_icon": "icon.png",
         "default_popup": "popup.html"
