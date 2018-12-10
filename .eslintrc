@@ -1,1 +1,15 @@
-"extends": "airbnb-base/legacy" 
+{
+"extends": "airbnb-base/legacy",
+"rules": {
+    "no-plusplus": 0,
+    "no-alert": 0,
+    "func-names": 0,
+    "no-useless-escape": 0,
+    "vars-on-top": 0
+},
+"globals": {
+    "GM_getValue": true,
+    "GM_setValue": true,
+    "GM_addStyle": true
+    }
+}
