@@ -1,8 +1,8 @@
 {
-  "name": "fuckjb51",
-  "version": "1.0.0",
-  "description": "- 百度搜索默认过滤掉脚本之家(www.jb51.net ) 的内容\r - 添加一个输入框，输入指定的url，使得在搜索时，来屏蔽掉来自特定地址的内容\r - 添加完成后点击过滤按钮进行提示",
-  "main": "fuckjb51.js",
+  "name": "search-engine-filter",
+  "version": "1.0.6",
+  "description": "在百度谷歌等搜索引擎的搜索结果中，根据自定义的过滤规则，过滤掉来自特定网站的搜索结果",
+  "main": "search engine filter",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
      "lint": "eslint ./*.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhangolve/fuckjb51.git"
+    "url": "git+https://github.com/zhangolve/search-engine-filter"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zhangolve/fuckjb51/issues"
+    "url": "https://github.com/zhangolve/search-engine-filter/issues"
   },
-  "homepage": "https://github.com/zhangolve/fuckjb51#readme",
+  "homepage": "https://github.com/zhangolve/search-engine-filter",
   "devDependencies": {
     "eslint": "^3.12.0",
     "eslint-config-airbnb-base": "^10.0.1",
