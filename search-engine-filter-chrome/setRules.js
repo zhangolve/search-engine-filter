@@ -10,7 +10,6 @@ submit.addEventListener('click', filterHandler);
 function filterHandler() {
     var inputFilter = document.getElementById('inputFilter');
     if (inputFilter.value !== '') {
-        // 需要增加网址的正则判断
         chrome.storage.sync.get('filter', function(data) {
             if (data.filter) {
                 if (!isStringInArray(inputFilter.value, data.filter.split('|'))) {
@@ -20,7 +19,12 @@ function filterHandler() {
                 var getRe = inputFilter.value + "\/{0,}.*?"
             }
             chrome.storage.sync.set({ 'filter': getRe });
-            window.location.reload(true);
+            console.log(0)
+            chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+                var activeTab = tabs[0];
+                console.log('1')
+                chrome.tabs.sendMessage(activeTab.id, {"message": "updated"});
+            });
         });
     } else {
         alert('请输入需要过滤的域名');
