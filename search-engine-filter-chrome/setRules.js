@@ -19,6 +19,8 @@ function filterHandler() {
                 var getRe = inputFilter.value + "\/{0,}.*?"
             }
             chrome.storage.sync.set({ 'filter': getRe });
+            alert('添加成功！');
+            listFilter()
             chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
                 var activeTab = tabs[0];
                 chrome.tabs.sendMessage(activeTab.id, {"message": "updated"});
@@ -43,18 +45,20 @@ var isStringInArray = function (s, arr) {
 
 
 var listFilter = function () {
-    chrome.storage.sync.get('filter', function (data) {
-        if (data.filter.length > 0) { 
-            let rs = data.filter.trim().split('|')
-            var index = 0
-            rs.forEach(function(item) {
-                $('#rules tbody').append('<tr><td> ' + item.replace('/{0,}.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
-                index += 1
-            })
-        }
-    })
+    if (/options/.test(window.location.href)) {
+        chrome.storage.sync.get('filter', function (data) {
+            if (data.filter.length > 0) { 
+                let rs = data.filter.trim().split('|')
+                var index = 0
+                $('#rules tbody').empty();
+                rs.forEach(function(item) {
+                    $('#rules tbody').append('<tr><td> ' + item.replace('/{0,}.*?', '') + '</td><td><button class="deleteRules" data="' + index + '" >删除</button></td> </tr>')
+                    index += 1
+                })
+            }
+        })
+    }
 }
-
 
 if (/options/.test(window.location.href)) {
     $(document).on('click', '.deleteRules', function() {
@@ -76,7 +80,6 @@ if (/options/.test(window.location.href)) {
             })
             result = JSON.stringify(result)
             var url = 'data:application/json;base64,' + btoa(result);
-                
             chrome.runtime.sendMessage({'filter': url}, function(response) {
                 console.log(response)
             });
