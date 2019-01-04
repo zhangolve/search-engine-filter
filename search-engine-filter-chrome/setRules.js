@@ -19,10 +19,8 @@ function filterHandler() {
                 var getRe = inputFilter.value + "\/{0,}.*?"
             }
             chrome.storage.sync.set({ 'filter': getRe });
-            console.log(0)
             chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
                 var activeTab = tabs[0];
-                console.log('1')
                 chrome.tabs.sendMessage(activeTab.id, {"message": "updated"});
             });
         });

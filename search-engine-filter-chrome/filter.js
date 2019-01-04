@@ -7,7 +7,6 @@ let host = window.location.host;
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
       if( request.message === "updated" ) {
-        console.log(3)
         init();
         }
     }
@@ -15,7 +14,6 @@ chrome.runtime.onMessage.addListener(
 
 function init() {
     chrome.storage.sync.get('filter', function(data) {
-        console.log(data);
         if (!data.filter) { //如果过滤规则为空，则不过滤
             getRe = '^$';
             var reg = new RegExp(getRe);
@@ -72,7 +70,6 @@ function baiduFilter(reg) {
 }
 
 function googleFilter(reg) {
-    console.log('ggg')
     if (googleRe.test(host)) {
         $('.g').each(function(index, item) {
             if (reg.test($(item).text())) {
